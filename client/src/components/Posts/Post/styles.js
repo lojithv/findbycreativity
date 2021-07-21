@@ -19,7 +19,7 @@ export default makeStyles({
     justifyContent: 'space-between',
     borderRadius: '5px',
     height: '100%',
-    position: 'relative',
+    position: 'sticky',
   },
   overlay: {
     position: 'absolute',

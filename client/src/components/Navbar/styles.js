@@ -27,7 +27,7 @@ export default makeStyles((theme) => ({
   toolbar: {
     display: 'flex',
     justifyContent: 'flex-end',
-    width: '400px',
+    width: '800px',
     [theme.breakpoints.down('sm')]: {
       width: 'auto',
     },
@@ -45,6 +45,11 @@ export default makeStyles((theme) => ({
   },
   buttons: {
     marginLeft: '20px',
+  },
+  iconbutton: {
+    position: 'relative',
+    marginLeft: '150px',
+    alignItems: 'center',
   },
   userName: {
     display: 'flex',
