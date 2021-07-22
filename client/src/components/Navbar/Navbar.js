@@ -8,10 +8,15 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import SearchIcon from "@material-ui/icons/Search";
 import TextField from '@material-ui/core/TextField';
 
+import Box from '@material-ui/core/Box';
+import Popover from '@material-ui/core/Popover';
+import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
+
 import memoriesLogo from '../../images/memoriesLogo.png';
 import memoriesText from '../../images/memoriesText.png';
 import * as actionType from '../../constants/actionTypes';
 import useStyles from './styles';
+import SearchPopup from './PopupSeacrh';
 
 const Navbar = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
@@ -55,9 +60,41 @@ const Navbar = () => {
         <img className={classes.image} src={memoriesLogo} alt="icon" height="40px" />
       </Link>
       <div className={classes.iconbutton}>
-                <IconButton>
-                  <SearchIcon />
-                </IconButton>
+
+      <PopupState variant="popover" popupId="demo-popup-popover">
+      {(popupState) => (
+        <div>
+          <Button
+        // variant="contained"
+        style={{  backgroundColor:'#DDDDDD', color:'#000000', maxWidth: '100px', maxHeight: '90px', minWidth: '30px', minHeight: '30px', paddingLeft:"50px", paddingRight:"50px"}}
+        size="medium"
+        className={classes.button}
+        startIcon={<SearchIcon />}
+        {...bindTrigger(popupState)}
+      >
+        Search
+      </Button>    
+          <Popover
+            {...bindPopover(popupState)}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'center',
+            }}
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'center',
+            }}
+          >
+            <Box p={2} style={{backgroundColor: "transparent"}}>
+              <SearchPopup/>
+            </Box>
+          </Popover>
+        </div>
+      )}
+    </PopupState>
+
+
+      
       </div>
       
       <Toolbar className={classes.toolbar}> 
