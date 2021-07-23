@@ -11,6 +11,14 @@ import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { useTheme } from '@material-ui/core/styles';
+
 import Box from '@material-ui/core/Box';
 import Popover from '@material-ui/core/Popover';
 import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
@@ -74,6 +82,12 @@ const Navbar = () => {
     setUser(JSON.parse(localStorage.getItem('profile')));
   }, [location]);
 
+
+  const [open, setOpen] = React.useState(false);
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+
+
   return (
     <AppBar className={classes.appBar} position="sticky" color="inherit">
       <Link to="/" className={classes.brandContainer}>
@@ -87,29 +101,30 @@ const Navbar = () => {
       {(popupState) => (
         <div>
           <Button
-        // variant="contained"
-        style={{  backgroundColor:'#525252', color:'#ffffff', maxWidth: '100px', maxHeight: '90px', minWidth: '30px', minHeight: '30px', paddingLeft:"50px", paddingRight:"50px"}}
-        size="medium"
-        className={classes.button}
-        startIcon={<SearchIcon />}
-        {...bindTrigger(popupState)}
-      >
-        Search
-      </Button>    
+              // variant="contained"
+              style={{  backgroundColor:'#525252', color:'#ffffff', maxWidth: '100px', maxHeight: '90px', minWidth: '30px', minHeight: '30px', paddingLeft:"50px", paddingRight:"50px"}}
+              size="medium"
+              className={classes.button}
+              startIcon={<SearchIcon />}
+              {...bindTrigger(popupState)}
+            >
+              Search
+          </Button>    
           <Popover
             {...bindPopover(popupState)}
             anchorOrigin={{
-              vertical: 'bottom',
+              vertical: 'center',
               horizontal: 'center',
             }}
             transformOrigin={{
-              vertical: 'top',
+              vertical: 'center',
               horizontal: 'center',
             }}
           >
-            <Box p={2} style={{backgroundColor: "transparent"}}>
-              <SearchPopup/>
-            </Box>
+            {/* <Box p={2} style={{backgroundColor: "transparent"}}>
+              
+            </Box> */}
+            <SearchPopup />
           </Popover>
         </div>
       )}

@@ -1,6 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
+import { deepPurple } from '@material-ui/core/colors';
 
-export default makeStyles({
+export default makeStyles((theme)=>({
   media: {
     height: 0,
     paddingTop: '56.25%',
@@ -12,6 +13,11 @@ export default makeStyles({
   },
   fullHeightCard: {
     height: '100%',
+  },
+  small: {
+    width: theme.spacing(3),
+    height: theme.spacing(3),
+    fontSize: 12,
   },
   card: {
     display: 'flex',
@@ -53,4 +59,4 @@ export default makeStyles({
     display: 'block',
     textAlign: 'initial',
   },
-});
+}));

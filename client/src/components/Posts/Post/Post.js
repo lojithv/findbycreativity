@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, CardActions, CardContent, CardMedia, Button, Typography, ButtonBase } from '@material-ui/core/';
+import { Card, CardActions, CardContent, CardMedia, Button, Typography, ButtonBase, Avatar, Box } from '@material-ui/core/';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import DeleteIcon from '@material-ui/icons/Delete';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
@@ -7,6 +7,7 @@ import ThumbUpAltOutlined from '@material-ui/icons/ThumbUpAltOutlined';
 import { useDispatch } from 'react-redux';
 import moment from 'moment';
 import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { likePost, deletePost } from '../../../actions/posts';
 import useStyles from './styles';
@@ -50,6 +51,10 @@ const Post = ({ post, setCurrentId }) => {
     history.push(`/posts/${post._id}`);
   };
 
+  const gotoProfile = (e) => {
+    history.push(`/creator/${post.name}`);
+  }
+
   return (
     <Card className={classes.card} raised elevation={6}>
       <ButtonBase
@@ -60,8 +65,14 @@ const Post = ({ post, setCurrentId }) => {
       >
         <CardMedia className={classes.media} image={post.selectedFile || 'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'} title={post.title} />
         <div className={classes.overlay}>
-          <Typography variant="h6">{post.name}</Typography>
-          <Typography variant="body2">{moment(post.createdAt).fromNow()}</Typography>
+            {/* <Button style={{ color:'white', textAlign:'left' }} to={`/creators/${post.name}`}>{post.name}</Button> */}
+            
+            <div>
+            <Avatar className={classes.small} alt={post.name} src={post.imageUrl}>{post.name.charAt(0)}</Avatar>
+            <Typography >{post.name}</Typography>
+            </div>
+            
+            <Box fontSize={12}>{moment(post.createdAt).fromNow()}</Box>
         </div>
         {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) && (
         <div className={classes.overlay2} name="edit">
