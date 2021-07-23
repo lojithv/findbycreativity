@@ -7,6 +7,9 @@ import IconButton from "@material-ui/core/IconButton";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import SearchIcon from "@material-ui/icons/Search";
 import TextField from '@material-ui/core/TextField';
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 
 import Box from '@material-ui/core/Box';
 import Popover from '@material-ui/core/Popover';
@@ -25,12 +28,32 @@ const Navbar = () => {
   const history = useHistory();
   const classes = useStyles();
 
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   const logout = () => {
     dispatch({ type: actionType.LOGOUT });
 
     history.push('/auth');
 
     setUser(null);
+    
+  };
+
+  const logout2 = () => {
+    dispatch({ type: actionType.LOGOUT });
+
+    history.push('/auth');
+
+    setUser(null);
+    setAnchorEl(null);
   };
 
   const uploadpost = () => {
@@ -51,13 +74,12 @@ const Navbar = () => {
     setUser(JSON.parse(localStorage.getItem('profile')));
   }, [location]);
 
-
-
   return (
     <AppBar className={classes.appBar} position="sticky" color="inherit">
       <Link to="/" className={classes.brandContainer}>
-        <img component={Link} to="/" src={memoriesText} alt="icon" height="45px" />
-        <img className={classes.image} src={memoriesLogo} alt="icon" height="40px" />
+      <Typography component={Link} to="/" style={{color:"white"}}>LOGO</Typography>
+        {/* <img component={Link} to="/" src={memoriesText} alt="icon" height="45px" /> */}
+        {/* <img className={classes.image} src={memoriesLogo} alt="icon" height="40px" /> */}
       </Link>
       <div className={classes.iconbutton}>
 
@@ -66,7 +88,7 @@ const Navbar = () => {
         <div>
           <Button
         // variant="contained"
-        style={{  backgroundColor:'#DDDDDD', color:'#000000', maxWidth: '100px', maxHeight: '90px', minWidth: '30px', minHeight: '30px', paddingLeft:"50px", paddingRight:"50px"}}
+        style={{  backgroundColor:'#525252', color:'#ffffff', maxWidth: '100px', maxHeight: '90px', minWidth: '30px', minHeight: '30px', paddingLeft:"50px", paddingRight:"50px"}}
         size="medium"
         className={classes.button}
         startIcon={<SearchIcon />}
@@ -100,14 +122,35 @@ const Navbar = () => {
       <Toolbar className={classes.toolbar}> 
         {user?.result ? (
           <div className={classes.profile}>
-            <Avatar className={classes.purple} alt={user?.result.name} src={user?.result.imageUrl}>{user?.result.name.charAt(0)}</Avatar>
+            
+            <Button variant="contained" className={classes.buttons} color="primary" onClick={uploadpost} startIcon={<CloudUploadIcon />}>Upload</Button>
+            <Menu
+            id="simple-menu"
+            
+            anchorEl={anchorEl}
+            keepMounted
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
+          >
+            <MenuItem onClick={handleClose}>
             <Typography className={classes.userName} variant="h6">{user?.result.name}</Typography>
-            <Button variant="contained" className={classes.buttons} color="primary" onClick={uploadpost}>Upload</Button>
-            <Button variant="contained" className={classes.buttons} color="secondary" onClick={logout}>Logout</Button>
+            </MenuItem>
+            <MenuItem onClick={handleClose}>Profile</MenuItem>
+            <MenuItem onClick={handleClose}>My account</MenuItem>
+            <MenuItem onClick={logout2}>Logout</MenuItem>
+          </Menu>
+
+          <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+               <Avatar className={classes.purple} alt={user?.result.name} src={user?.result.imageUrl}>{user?.result.name.charAt(0)}</Avatar>
+            </Button>
+
+            {/* <Typography className={classes.userName} variant="h6">{user?.result.name}</Typography> */}
+         
+            {/* <Button variant="contained" className={classes.buttons} color="secondary" onClick={logout}>Logout</Button> */}
           </div>
         ) : (
           <>
-          <Button variant="contained" className={classes.logout} color="primary" onClick={uploadpost}>Upload</Button>
+            <Button variant="contained" className={classes.buttons} color="primary" onClick={uploadpost} startIcon={<CloudUploadIcon />}>Upload</Button>
           <Button component={Link} to="/auth" className={classes.buttons} variant="contained" color="primary">Sign In</Button>
           </>
         )}

@@ -1,11 +1,10 @@
 import { makeStyles } from '@material-ui/core/styles';
 import { deepPurple } from '@material-ui/core/colors';
-import Menu from '@material-ui/core/Menu';
 
 export default makeStyles((theme) => ({
   appBar: {
     borderRadius: 0,
-    backgroundColor:'#242424',
+    backgroundColor: '#242424',
     marginBottom: '20px',
     display: 'flex',
     flexDirection: 'row',
@@ -16,7 +15,6 @@ export default makeStyles((theme) => ({
       flexDirection: 'column',
     },
   },
-
   heading: {
     color: theme.palette.primary.main,
     textDecoration: 'none',
@@ -29,7 +27,7 @@ export default makeStyles((theme) => ({
   },
   toolbar: {
     display: 'flex',
-    justifyContent: 'flex-end',
+    justifyContent: 'flex-start',
     width: '800px',
     [theme.breakpoints.down('sm')]: {
       width: 'auto',
@@ -38,7 +36,7 @@ export default makeStyles((theme) => ({
   profile: {
     display: 'flex',
     justifyContent: 'space-between',
-    width: '400px',
+    width: '300px',
     alignItems: 'center',
     [theme.breakpoints.down('sm')]: {
       width: 'auto',
@@ -47,7 +45,7 @@ export default makeStyles((theme) => ({
     },
   },
   buttons: {
-    marginLeft: '20px',
+    marginLeft: '5px',
   },
   iconbutton: {
     position: 'relative',
@@ -56,7 +54,7 @@ export default makeStyles((theme) => ({
   },
   userName: {
     display: 'flex',
-    color: 'black',
+    color: 'white',
     alignItems: 'center',
     textAlign: 'center',
   },
@@ -67,5 +65,9 @@ export default makeStyles((theme) => ({
   purple: {
     color: theme.palette.getContrastText(deepPurple[500]),
     backgroundColor: deepPurple[500],
+  },
+  large: {
+    width: theme.spacing(15),
+    height: theme.spacing(15),
   },
 }));

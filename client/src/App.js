@@ -10,6 +10,7 @@ import Auth from './components/Auth/Auth';
 import CreatorOrTag from './components/CreatorOrTag/CreatorOrTag';
 import UploadPost from './components/Form/UploadPost';
 import SimpleDialog from './components/Navbar/PopupSeacrh';
+import Profile from './components/Profile/Profile';
 
 const App = () => {
   const user = JSON.parse(localStorage.getItem('profile'));
@@ -21,6 +22,7 @@ const App = () => {
         <Switch>
           <Route path="/" exact component={() => <Redirect to="/posts" />} />
           <Route path="/posts" exact component={Home} />
+          <Route path="/profile" exact component={Profile} />
           <Route path="/search" exact component={SeacrhPopup} />
           <Route path="/posts/search" exact component={Home} />
           <Route path="/popup" exact component={SimpleDialog} />
