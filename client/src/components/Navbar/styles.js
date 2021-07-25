@@ -8,6 +8,8 @@ export default makeStyles((theme) => ({
     backgroundColor:'#242424',
     marginBottom: '20px',
     display: 'flex',
+    height: '80px',
+    width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',

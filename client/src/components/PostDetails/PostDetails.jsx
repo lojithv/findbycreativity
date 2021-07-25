@@ -27,7 +27,7 @@ const Post = () => {
 
   if (!post) return null;
 
-  const openPost = (_id) => history.push(`/posts/${_id}`);
+  const openPost = (_id) => history.push(`/users/posts/${_id}`);
 
   if (isLoading) {
     return (
@@ -53,7 +53,7 @@ const Post = () => {
           <Typography gutterBottom variant="body1" component="p">{post.message}</Typography>
           <Typography variant="h6">
             Created by:
-            <Link to={`/creators/${post.name}`} style={{ textDecoration: 'none', color: '#3f51b5' }}>
+            <Link to={`/users/creators/${post.name}`} style={{ textDecoration: 'none', color: '#3f51b5' }}>
               {` ${post.name}`}
             </Link>
           </Typography>

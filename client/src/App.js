@@ -20,16 +20,16 @@ const App = () => {
       <Container maxWidth="xl">
         <Navbar/>
         <Switch>
-          <Route path="/" exact component={() => <Redirect to="/posts" />} />
-          <Route path="/posts" exact component={Home} />
-          <Route path="/profile" exact component={Profile} />
-          <Route path="/search" exact component={SeacrhPopup} />
-          <Route path="/posts/search" exact component={Home} />
-          <Route path="/popup" exact component={SimpleDialog} />
-          <Route path="/posts/:id" exact component={PostDetails} />
-          <Route path="/uploadpost" exact component={UploadPost} />
-          <Route path={['/creators/:name', '/tags/:name']} component={CreatorOrTag} />
-          <Route path="/auth" exact component={() => (!user ? <Auth /> : <Redirect to="/posts" />)} />
+          <Route path="/" exact component={() => <Redirect to="/users/posts" />} />
+          <Route path="/users/posts" exact component={Home} />
+          {/* <Route path="/profile" exact component={Profile} /> */}
+          <Route path="/users/search" exact component={SeacrhPopup} />
+          <Route path="/users/posts/search" exact component={Home} />
+          <Route path="/users/popup" exact component={SimpleDialog} />
+          <Route path="/users/posts/:id" exact component={PostDetails} />
+          <Route path="/users/uploadpost" exact component={UploadPost} />
+          <Route path={['/users/creators/:name', '/tags/:name']} component={CreatorOrTag} />
+          <Route path="/auth" exact component={() => (!user ? <Auth /> : <Redirect to="/users/posts" />)} />
         </Switch>
       </Container>
     </BrowserRouter>
