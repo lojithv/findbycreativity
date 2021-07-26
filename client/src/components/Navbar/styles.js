@@ -58,7 +58,7 @@ export default makeStyles((theme) => ({
   },
   userName: {
     display: 'flex',
-    color: 'black',
+    color: 'white',
     alignItems: 'center',
     textAlign: 'center',
   },
@@ -70,4 +70,9 @@ export default makeStyles((theme) => ({
     color: theme.palette.getContrastText(deepPurple[500]),
     backgroundColor: deepPurple[500],
   },
+  dropDownMenu: {
+    backgroundColor: 'black',
+    color: 'white'
+  }
 }));
+

@@ -48,22 +48,23 @@ const Post = ({ post, setCurrentId }) => {
   const openPost = (e) => {
     // dispatch(getPost(post._id, history));
 
-    history.push(`/posts/${post._id}`);
+    history.push(`/users/posts/${post._id}`);
   };
 
   const gotoProfile = (e) => {
-    history.push(`/creators/${post.name}`);
+    history.push(`/users/creators/${post.name}`);
   }
 
   return (
     <Card className={classes.card} raised elevation={6}>
         <CardMedia className={classes.media} image={post.selectedFile || 'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'} title={post.title} onClick={openPost}/>
-        <Grid className={classes.overlay}> 
-        <ButtonBase component="span" name="test" className={classes.cardAction} onClick={gotoProfile}>    
-            <Avatar className={classes.small} alt={post.name} src={post.imageUrl}>{post.name.charAt(0)}</Avatar>
-            <Typography >{post.name}</Typography>  
-            </ButtonBase>   
-            <Box fontSize={12}>{moment(post.createdAt).fromNow()}</Box>
+        <Grid className={classes.overlay} >  
+           <Grid container direction="row">
+            <Avatar className={classes.small} alt={post.name} src={post.imageUrl} onClick={gotoProfile}>{post.name.charAt(0)}</Avatar>
+            <Typography style={{marginLeft:10, cursor: 'pointer'}} onClick={gotoProfile}>{post.name}</Typography> 
+            
+            </Grid>
+            <Box fontSize={12} onClick={gotoProfile} style={{cursor: 'pointer', marginTop: 10}}>{moment(post.createdAt).fromNow()}</Box>
         </Grid>
         <ButtonBase component="span" name="test" className={classes.cardAction} onClick={openPost}>  
         {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) && (

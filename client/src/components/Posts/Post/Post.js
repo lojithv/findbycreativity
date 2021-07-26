@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import moment from 'moment';
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 import { likePost, deletePost } from '../../../actions/posts';
 import useStyles from './styles';
@@ -62,6 +63,7 @@ const Post = ({ post, setCurrentId }) => {
            <Grid container direction="row">
             <Avatar className={classes.small} alt={post.name} src={post.imageUrl} onClick={gotoProfile}>{post.name.charAt(0)}</Avatar>
             <Typography style={{marginLeft:10, cursor: 'pointer'}} onClick={gotoProfile}>{post.name}</Typography> 
+            <MoreVertIcon style={{marginLeft:90}} onClick={gotoProfile}></MoreVertIcon>
             </Grid>
             <Box fontSize={12} onClick={gotoProfile} style={{cursor: 'pointer', marginTop: 10}}>{moment(post.createdAt).fromNow()}</Box>
         </Grid>

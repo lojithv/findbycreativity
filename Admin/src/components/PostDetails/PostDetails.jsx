@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Paper, Typography, CircularProgress, Divider } from '@material-ui/core/';
+import { Paper, Typography, CircularProgress, Divider, Icon } from '@material-ui/core/';
 import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
 import { useParams, useHistory, Link } from 'react-router-dom';
@@ -27,7 +27,7 @@ const Post = () => {
 
   if (!post) return null;
 
-  const openPost = (_id) => history.push(`/posts/${_id}`);
+  const openPost = (_id) => history.push(`/users/posts/${_id}`);
 
   if (isLoading) {
     return (
@@ -53,7 +53,7 @@ const Post = () => {
           <Typography gutterBottom variant="body1" component="p">{post.message}</Typography>
           <Typography variant="h6">
             Created by:
-            <Link to={`/creators/${post.name}`} style={{ textDecoration: 'none', color: '#3f51b5' }}>
+            <Link to={`/users/creators/${post.name}`} style={{ textDecoration: 'none', color: '#3f51b5' }}>
               {` ${post.name}`}
             </Link>
           </Typography>
@@ -63,6 +63,7 @@ const Post = () => {
           <Divider style={{ margin: '20px 0' }} />
           <CommentSection post={post} />
           <Divider style={{ margin: '20px 0' }} />
+          
         </div>
         <div className={classes.imageSection}>
           <img className={classes.media} src={post.selectedFile || 'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'} alt={post.title} />

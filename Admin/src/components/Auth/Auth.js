@@ -39,18 +39,18 @@ const SignUp = () => {
     }
   };
 
-  const googleSuccess = async (res) => {
-    const result = res?.profileObj;
-    const token = res?.tokenId;
+  // const googleSuccess = async (res) => {
+  //   const result = res?.profileObj;
+  //   const token = res?.tokenId;
 
-    try {
-      dispatch({ type: AUTH, data: { result, token } });
+  //   try {
+  //     dispatch({ type: AUTH, data: { result, token } });
 
-      history.push('/');
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  //     history.push('/');
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   const googleError = () => console.log('Google Sign In was unsuccessful. Try again later');
 
@@ -59,9 +59,9 @@ const SignUp = () => {
   return (
     <Container component="main" maxWidth="xs">
       <Paper className={classes.paper} elevation={6}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
+        {/* <Avatar className={classes.avatar}> */}
+          {/* <LockOutlinedIcon /> */}
+        {/* </Avatar> */}
         <Typography component="h1" variant="h5">{ isSignup ? 'Sign up' : 'Sign in' }</Typography>
         <form className={classes.form} onSubmit={handleSubmit}>
           <Grid container spacing={2}>
@@ -75,20 +75,9 @@ const SignUp = () => {
             <Input name="password" label="Password" handleChange={handleChange} type={showPassword ? 'text' : 'password'} handleShowPassword={handleShowPassword} />
             { isSignup && <Input name="confirmPassword" label="Repeat Password" handleChange={handleChange} type="password" /> }
           </Grid>
-          <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
+          <Button fullWidth variant="contained" className={classes.submit} onClick={handleSubmit}>
             { isSignup ? 'Sign Up' : 'Sign In' }
           </Button>
-          <GoogleLogin
-            clientId="746082676625-pg13al4ovp28abi2n0317soei68h9cfr.apps.googleusercontent.com"
-            render={(renderProps) => (
-              <Button className={classes.googleButton} color="primary" fullWidth onClick={renderProps.onClick} disabled={renderProps.disabled} startIcon={<Icon />} variant="contained">
-                Google Sign In
-              </Button>
-            )}
-            onSuccess={googleSuccess}
-            onFailure={googleError}
-            cookiePolicy="single_host_origin"
-          />
           <Grid container justify="flex-end">
             <Grid item>
               <Button onClick={switchMode}>

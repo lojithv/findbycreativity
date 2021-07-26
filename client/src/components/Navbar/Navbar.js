@@ -27,6 +27,7 @@ import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
 import * as actionType from '../../constants/actionTypes';
 import useStyles from './styles';
 import SearchPopup from './PopupSeacrh';
+import DropDownMenu from './DropDownMenu';
 
 const Navbar = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
@@ -47,25 +48,14 @@ const Navbar = () => {
 
   const logout = () => {
     dispatch({ type: actionType.LOGOUT });
-
     history.push('/auth');
-
     setUser(null);
-    
-  };
-
-  const logout2 = () => {
-    dispatch({ type: actionType.LOGOUT });
-
-    history.push('/auth');
-
-    setUser(null);
-    setAnchorEl(null);
+    // window.location.reload(); 
   };
 
   const uploadpost = () => {
    
-    history.push('/uploadpost');
+    history.push('/users/uploadpost');
     setUser(null);
   };
 
@@ -90,7 +80,7 @@ const Navbar = () => {
   return (
     <AppBar className={classes.appBar} position="sticky" color="inherit">
       {/* <Link to="/" className={classes.brandContainer}> */}
-      <Typography component={Link} to="/" style={{color:"white",textDecoration: 'none'}} >LOGO</Typography>
+      <Typography component={Link} to="/" style={{color:"white",textDecoration: 'none'}} >FreelanCircle</Typography>
         {/* <img component={Link} to="/" src={memoriesText} alt="icon" height="45px" /> */}
         {/* <img className={classes.image} src={memoriesLogo} alt="icon" height="40px" /> */}
       {/* </Link> */}
@@ -136,34 +126,13 @@ const Navbar = () => {
           <div className={classes.profile}>
             
             <Button variant="contained" className={classes.buttons} color="#000000" onClick={uploadpost} startIcon={<CloudUploadIcon />}>Upload</Button>
-            <Menu
-            id="simple-menu"
-            
-            anchorEl={anchorEl}
-            keepMounted
-            open={Boolean(anchorEl)}
-            onClose={handleClose}
-          >
-            <MenuItem onClick={handleClose}>
-            <Typography className={classes.userName} variant="h6">{user?.result.name}</Typography>
-            </MenuItem>
-            <MenuItem onClick={handleClose}>Profile</MenuItem>
-            <MenuItem onClick={handleClose}>My account</MenuItem>
-            <MenuItem onClick={logout2}>Logout</MenuItem>
-          </Menu>
-
-          <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-               <Avatar className={classes.purple} alt={user?.result.name} src={user?.result.imageUrl}>{user?.result.name.charAt(0)}</Avatar>
-            </Button>
-
-            {/* <Typography className={classes.userName} variant="h6">{user?.result.name}</Typography> */}
-         
-            {/* <Button variant="contained" className={classes.buttons} color="secondary" onClick={logout}>Logout</Button> */}
+           
+           <DropDownMenu/>
           </div>
         ) : (
           <>
             <Button variant="contained" className={classes.buttons} color="#000000" onClick={uploadpost} startIcon={<CloudUploadIcon />}>Upload</Button>
-          <Button component={Link} to="/auth" className={classes.buttons} variant="contained" color="#000000">Sign In</Button>
+          <Button component={Link} to="/auth" className={classes.buttons} variant="contained" color="#000000" >Sign In</Button>
           </>
         )}
       </Toolbar>

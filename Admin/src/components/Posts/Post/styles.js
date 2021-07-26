@@ -18,6 +18,8 @@ export default makeStyles((theme)=>({
     width: theme.spacing(3),
     height: theme.spacing(3),
     fontSize: 12,
+    cursor: 'pointer',
+    // marginright : 50,
   },
   card: {
     display: 'flex',

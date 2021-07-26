@@ -52,10 +52,8 @@ const Home = () => {
     <Grow in>
       <Container maxWidth="xl">
         <Grid container justify="space-between" alignItems="stretch" spacing={3} className={classes.gridContainer}>
-          <Grid item xs={12} sm={6} md={9}>
+          <Grid item xs={12} sm={12} md={12}>
             <Posts setCurrentId={setCurrentId} />
-          </Grid>
-          <Grid item xs={12} sm={6} md={3}>
             {(!searchQuery && !tags.length) && (
               <Paper className={classes.pagination} elevation={6}>
                 <Pagination page={page} />
