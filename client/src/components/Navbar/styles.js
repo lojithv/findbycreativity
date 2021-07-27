@@ -5,17 +5,26 @@ import Menu from '@material-ui/core/Menu';
 export default makeStyles((theme) => ({
   appBar: {
     borderRadius: 0,
-    backgroundColor:'#242424',
     marginBottom: '20px',
     display: 'flex',
     height: '80px',
-    width: '100%',
+    width: 'inherit',
+    // position: 'sticky',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: '10px 50px',
+    // backgroundColor: 'rgba(18, 18, 18, 0.8)',
+    backgroundColor: 'rgba( 255, 255, 255, 0.7 )',
+    // boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
+    backdropFilter: 'blur( 1.5px )',
+    WebkitBackdropFilter: ' blur( 1.5px )',
+    border: '1px solid rgba( 255, 255, 255, 0.8 )',
+    color: 'black',
     [theme.breakpoints.down('sm')]: {
       flexDirection: 'column',
+    
+      
     },
   },
 
@@ -71,8 +80,14 @@ export default makeStyles((theme) => ({
     backgroundColor: deepPurple[500],
   },
   dropDownMenu: {
-    backgroundColor: 'black',
+    backgroundColor: 'rgba(18, 18, 18, 0.8)',
     color: 'white'
-  }
+  },
+  // searchPop: {
+  //  paper: {
+  //    backgroundColor:'rgba(18, 18, 18, 0.8)'
+  //  }
+  // }
+  
 }));
 

@@ -11,6 +11,7 @@ import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import CloseIcon from '@material-ui/icons/Close';
 
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -72,23 +73,31 @@ const Navbar = () => {
   }, [location]);
 
 
+  // const [open, setOpen] = React.useState(false);
+  // const theme = useTheme();
+  // const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+
   const [open, setOpen] = React.useState(false);
-  const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+
+  const handleClickOpenSearch = () => {
+    setOpen(true);
+  };
+
+  const handleCloseSearch = () => {
+    setOpen(false);
+  };
 
 
   return (
-    <AppBar className={classes.appBar} position="sticky" color="inherit">
+    <AppBar className={classes.appBar} position="sticky">
       {/* <Link to="/" className={classes.brandContainer}> */}
-      <Typography component={Link} to="/" style={{color:"white",textDecoration: 'none'}} >FreelanCircle</Typography>
+      <Typography component={Link} to="/" style={{color:"black",textDecoration: 'none',fontWeight: 'bold', fontSize: 25}} >FreelanCircle</Typography>
         {/* <img component={Link} to="/" src={memoriesText} alt="icon" height="45px" /> */}
         {/* <img className={classes.image} src={memoriesLogo} alt="icon" height="40px" /> */}
       {/* </Link> */}
       <Switch>
         <Route path="/users">
       <div className={classes.iconbutton}>
-        <PopupState variant="popover" popupId="demo-popup-popover">
-           {(popupState) => (
            <div>
             <Button
               // variant="contained"
@@ -96,29 +105,41 @@ const Navbar = () => {
               size="medium"
               className={classes.button}
               startIcon={<SearchIcon />}
-              {...bindTrigger(popupState)}
+              onClick={handleClickOpenSearch}
             >
               Search
-          </Button>    
-          <Popover
-            {...bindPopover(popupState)}
-            anchorOrigin={{
-              vertical: 'center',
-              horizontal: 'center',
-            }}
-            transformOrigin={{
-              vertical: 'center',
-              horizontal: 'center',
-            }}
-          >
-            {/* <Box p={2} style={{backgroundColor: "transparent"}}>
-              
-            </Box> */}
-            <SearchPopup />
-          </Popover>
+          </Button>  
+
+      <Dialog className={classes.searchPop} open={open} onClose={handleCloseSearch} aria-labelledby="form-dialog-title" 
+      overlayStyle="transparent"
+      PaperProps={{
+        style: {
+          background: 'rgba( 255, 255, 255, 0.20 )',
+          boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
+          backdropFilter: 'blur( 1.5px )',
+          WebkitBackdropFilter: ' blur( 1.5px )',
+          borderRadius:'10px',
+          border: '1px solid rgba( 255, 255, 255, 0.18 )'
+        } }}>
+      <DialogContent >
+        <div style={{display: "flex",alignItems: "center",justifyContent: "space-between", marginBottom:"20px"}}>
+           <Typography variant="contained" style={{ color: 'white', fontSize: 30}}>Search</Typography>
+           <CloseIcon style={{ color: 'white', fontSize: 30}} onClick={handleCloseSearch}/>
         </div>
-      )}
-    </PopupState>
+        <div style={{
+          background: 'rgba( 255, 255, 255, 0.70 )',
+          boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
+          backdropFilter: 'blur( 20.0px )',
+          WebkitBackdropFilter: ' blur( 20.0px )',
+          borderRadius:'10px',
+          border: '1px rgba( 255, 255, 255, 0.18 )'
+          }}>
+          <SearchPopup />
+          </div>
+        </DialogContent>
+      </Dialog> 
+
+        </div>
       </div>
       
       <Toolbar className={classes.toolbar}> 

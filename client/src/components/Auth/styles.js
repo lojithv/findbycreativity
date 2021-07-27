@@ -7,6 +7,11 @@ export default makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
     padding: theme.spacing(2),
+    backgroundColor: 'rgba( 255, 255, 255, 0.3 )',
+    boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
+    backdropFilter: 'blur( 1.5px )',
+    WebkitBackdropFilter: ' blur( 1.5px )',
+    border: '1px solid rgba( 255, 255, 255, 0.5 )'
   },
   root: {
     '& .MuiTextField-root': {
@@ -20,6 +25,7 @@ export default makeStyles((theme) => ({
   form: {
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing(3),
+    color: 'white'
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
@@ -27,4 +33,13 @@ export default makeStyles((theme) => ({
   googleButton: {
     marginBottom: theme.spacing(2),
   },
+  submit: {
+    backgroundColor: 'rgba(18, 18, 18, 0.8)',
+    color: "white",
+    marginTop: "10px",
+    marginBottom:"10px",
+    '&:hover':{
+      backgroundColor:"#171717"
+    }
+  }
 }));

@@ -11,14 +11,16 @@ import CreatorOrTag from './components/CreatorOrTag/CreatorOrTag';
 import UploadPost from './components/Form/UploadPost';
 import SimpleDialog from './components/Navbar/PopupSeacrh';
 import Profile from './components/Profile/Profile';
+import './index.css';
 
 const App = () => {
   const user = JSON.parse(localStorage.getItem('profile'));
 
   return (
     <BrowserRouter>
-      <Container maxWidth="xl">
-        <Navbar/>
+            <Navbar/>
+      <Container maxWidth="inherit">
+
         <Switch>
           <Route path="/" exact component={() => <Redirect to="/users/posts" />} />
           <Route path="/users/posts" exact component={Home} />

@@ -57,15 +57,14 @@ const Post = ({ post, setCurrentId }) => {
   }
 
   return (
-    <Card className={classes.card} raised elevation={6}>
+    <Card className={classes.card} elevation={6} >
         <CardMedia className={classes.media} image={post.selectedFile || 'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'} title={post.title} onClick={openPost}/>
         <Grid className={classes.overlay} >  
-           <Grid container direction="row">
-            <Avatar className={classes.small} alt={post.name} src={post.imageUrl} onClick={gotoProfile}>{post.name.charAt(0)}</Avatar>
-            <Typography style={{marginLeft:10, cursor: 'pointer'}} onClick={gotoProfile}>{post.name}</Typography> 
-            <MoreVertIcon style={{marginLeft:90}} onClick={gotoProfile}></MoreVertIcon>
+           <Grid container direction="row" style={{alignContent: 'center'}}>
+            {/* <Avatar className={classes.small} alt={post.name} src={post.imageUrl} onClick={gotoProfile}>{post.name.charAt(0)}</Avatar>
+            <Typography style={{marginLeft:10, cursor: 'pointer', color: 'white'}} onClick={gotoProfile}>{post.name}</Typography>  */}
+              <MoreVertIcon onClick={gotoProfile}></MoreVertIcon>
             </Grid>
-            <Box fontSize={12} onClick={gotoProfile} style={{cursor: 'pointer', marginTop: 10}}>{moment(post.createdAt).fromNow()}</Box>
         </Grid>
         <ButtonBase component="span" name="test" className={classes.cardAction} onClick={openPost}>  
         {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) && (
@@ -82,21 +81,26 @@ const Post = ({ post, setCurrentId }) => {
           </Button>
         </div>
         )}
+        <div>
+        <Avatar className={classes.small} alt={post.name} src={post.imageUrl} onClick={gotoProfile}>{post.name.charAt(0)}</Avatar>
+            <Typography style={{marginLeft:10, cursor: 'pointer', color: 'white'}} onClick={gotoProfile}>{post.name}</Typography> 
+            <Box fontSize={12} onClick={gotoProfile} style={{cursor: 'pointer', marginTop: 10}}>{moment(post.createdAt).fromNow()}</Box>
+        </div>
         <div className={classes.details}>
-          <Typography variant="body2" color="textSecondary" component="h2">{post.tags.map((tag) => `#${tag} `)}</Typography>
+          <Typography variant="body2" color="white" component="h2">{post.tags.map((tag) => `#${tag} `)}</Typography>
         </div>
         <Typography className={classes.title} gutterBottom variant="h5" component="h2">{post.title}</Typography>
         <CardContent>
-          <Typography variant="body2" color="textSecondary" component="p">{post.message.split(' ').splice(0, 20).join(' ')}...</Typography>
+          <Typography variant="body2" color="white" component="p">{post.message.split(' ').splice(0, 20).join(' ')}...</Typography>
         </CardContent>
       </ButtonBase>
       <CardActions className={classes.cardActions}>
-        <Button size="small" color="primary" disabled={!user?.result} onClick={handleLike}>
+        <Button size="small" style={{color: 'white'}} disabled={!user?.result} onClick={handleLike}>
           <Likes />
         </Button>
         {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) && (
-          <Button size="small" color="secondary" onClick={() => dispatch(deletePost(post._id))}>
-            <DeleteIcon fontSize="small" /> &nbsp; Delete
+          <Button size="small" style={{color: 'white'}} onClick={() => dispatch(deletePost(post._id))}>
+            <DeleteIcon fontSize="small" style={{color: 'white'}}/> &nbsp; Delete
           </Button>
         )}
       </CardActions>

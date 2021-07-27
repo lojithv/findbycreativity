@@ -18,4 +18,11 @@ export default makeStyles((theme) => ({
       flexDirection: 'column-reverse',
     },
   },
+  searchButton: {
+    backgroundColor: '#363636',
+    color:"white",
+    '&:hover': {
+      backgroundColor: '#1a1a1a'
+    }
+  }
 }));

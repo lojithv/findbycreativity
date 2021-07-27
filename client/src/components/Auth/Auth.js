@@ -62,26 +62,26 @@ const SignUp = () => {
         {/* <Avatar className={classes.avatar}> */}
           {/* <LockOutlinedIcon /> */}
         {/* </Avatar> */}
-        <Typography component="h1" variant="h5">{ isSignup ? 'Sign up' : 'Sign in' }</Typography>
+        <Typography component="h1" variant="h5" style={{color: 'white'}}>{ isSignup ? 'Sign up' : 'Sign in' }</Typography>
         <form className={classes.form} onSubmit={handleSubmit}>
           <Grid container spacing={2}>
             { isSignup && (
             <>
-              <Input name="firstName" label="First Name" handleChange={handleChange} autoFocus half />
-              <Input name="lastName" label="Last Name" handleChange={handleChange} half />
+              <Input name="firstName" label="First Name" handleChange={handleChange} autoFocus half style={{color: 'white'}}/>
+              <Input name="lastName" label="Last Name" handleChange={handleChange} half style={{color: 'white'}}/>
             </>
             )}
-            <Input name="email" label="Email Address" handleChange={handleChange} type="email" />
-            <Input name="password" label="Password" handleChange={handleChange} type={showPassword ? 'text' : 'password'} handleShowPassword={handleShowPassword} />
-            { isSignup && <Input name="confirmPassword" label="Repeat Password" handleChange={handleChange} type="password" /> }
+            <Input name="email" label="Email Address" handleChange={handleChange} type="email" style={{color: 'white'}}/>
+            <Input name="password" style={{color: 'white'}} label="Password" handleChange={handleChange} type={showPassword ? 'text' : 'password'} handleShowPassword={handleShowPassword} />
+            { isSignup && <Input style={{color: 'white'}} name="confirmPassword" label="Repeat Password" handleChange={handleChange} type="password" /> }
           </Grid>
-          <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
+          <Button type="submit" fullWidth variant="contained" className={classes.submit}>
             { isSignup ? 'Sign Up' : 'Sign In' }
           </Button>
           <GoogleLogin
             clientId="746082676625-pg13al4ovp28abi2n0317soei68h9cfr.apps.googleusercontent.com"
             render={(renderProps) => (
-              <Button className={classes.googleButton} color="primary" fullWidth onClick={renderProps.onClick} disabled={renderProps.disabled} startIcon={<Icon />} variant="contained">
+              <Button className={classes.googleButton} variant="contained" fullWidth onClick={renderProps.onClick} disabled={renderProps.disabled} startIcon={<Icon />} variant="contained">
                 Google Sign In
               </Button>
             )}
@@ -91,7 +91,7 @@ const SignUp = () => {
           />
           <Grid container justify="flex-end">
             <Grid item>
-              <Button onClick={switchMode}>
+              <Button onClick={switchMode} style={{color: 'white'}}>
                 { isSignup ? 'Already have an account? Sign in' : "Don't have an account? Sign Up" }
               </Button>
             </Grid>

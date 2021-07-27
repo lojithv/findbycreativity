@@ -1,7 +1,13 @@
 
 body {
-    background-color: #ebebeb;
+    background-color: #0c2033;
 }
+
+html, body {
+   /* display: none; */
+   margin: 0;
+   padding:0;
+  }
 
 * {
     /* font-family: 'Noto Sans JP' !important; */
