@@ -91,7 +91,7 @@ const Navbar = () => {
   return (
     <AppBar className={classes.appBar} position="sticky">
       {/* <Link to="/" className={classes.brandContainer}> */}
-      <Typography component={Link} to="/" style={{color:"black",textDecoration: 'none',fontWeight: 'bold', fontSize: 25}} >FreelanCircle</Typography>
+      <Typography component={Link} to="/" style={{color:"#e6e6e6",textDecoration: 'none',fontWeight: 'bold', fontSize: 25}} >FreelanCircle</Typography>
         {/* <img component={Link} to="/" src={memoriesText} alt="icon" height="45px" /> */}
         {/* <img className={classes.image} src={memoriesLogo} alt="icon" height="40px" /> */}
       {/* </Link> */}

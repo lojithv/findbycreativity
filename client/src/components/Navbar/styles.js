@@ -14,13 +14,16 @@ export default makeStyles((theme) => ({
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: '10px 50px',
-    // backgroundColor: 'rgba(18, 18, 18, 0.8)',
-    backgroundColor: 'rgba( 255, 255, 255, 0.7 )',
-    // boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
-    backdropFilter: 'blur( 1.5px )',
-    WebkitBackdropFilter: ' blur( 1.5px )',
-    border: '1px solid rgba( 255, 255, 255, 0.8 )',
-    color: 'black',
+    // backgroundColor: 'rgba(17, 25, 40, 0.75)',
+    // backdropFilter: 'blur( 1.5px ) saturate(180%)',
+    // WebkitBackdropFilter: ' blur( 1.5px ) saturate(180%)',
+    // border: '1px solid rgba(255, 255, 255, 0.125)',
+    backgroundColor: 'rgba( 148, 148, 148, 0.6 )',
+    boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
+    backdropFilter: 'blur(16px) saturate(180%)',
+    WebkitBackdropFilter: ' blur(16px) saturate(180%)',
+    border: '1px solid rgba( 255, 255, 255, 0.5 )',
+
     [theme.breakpoints.down('sm')]: {
       flexDirection: 'column',
     
@@ -29,7 +32,7 @@ export default makeStyles((theme) => ({
   },
 
   heading: {
-    color: theme.palette.primary.main,
+    color: 'white',
     textDecoration: 'none',
     fontSize: '2em',
     fontWeight: 100,

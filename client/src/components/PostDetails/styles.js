@@ -11,6 +11,7 @@ export default makeStyles((theme) => ({
   card: {
     display: 'flex',
     width: '100%',
+    
     [theme.breakpoints.down('sm')]: {
       flexWrap: 'wrap',
       flexDirection: 'column',
@@ -34,6 +35,11 @@ export default makeStyles((theme) => ({
     },
   },
   loadingPaper: {
+    backgroundColor: 'rgba( 148, 148, 148, 0.2 )',
+    boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
+    backdropFilter: 'blur(16px) saturate(180%)',
+    WebkitBackdropFilter: ' blur(16px) saturate(180%)',
+    border: '1px solid rgba( 255, 255, 255, 0.5 )',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -49,5 +55,16 @@ export default makeStyles((theme) => ({
     height: '200px',
     overflowY: 'auto',
     marginRight: '30px',
+
   },
+  Mainpaper:{
+    backgroundColor: 'rgba( 148, 148, 148, 0.2 )',
+    boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
+    backdropFilter: 'blur(16px) saturate(180%)',
+    WebkitBackdropFilter: ' blur(16px) saturate(180%)',
+    border: '1px solid rgba( 255, 255, 255, 0.5 )',
+  },
+  Typography: {
+    color: 'white'
+  }
 }));

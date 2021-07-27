@@ -11,10 +11,10 @@ export default makeStyles((theme) => ({
     borderRadius: 4,
     marginTop: '1rem',
     padding: '16px',
-    backgroundColor: 'rgba( 255, 255, 255, 0.2 )',
+    backgroundColor: 'rgba( 255, 255, 255, 0.1 )',
     // boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
-    backdropFilter: 'blur( 1.5px )',
-    WebkitBackdropFilter: ' blur( 1.5px )',
+    backdropFilter: 'blur(16px) saturate(180%)',
+    WebkitBackdropFilter: 'blur(16px) saturate(180%)',
     borderRadius:'10px',
     border: '1px solid rgba( 255, 255, 255, 0.4 )',
     color: 'white'

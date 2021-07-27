@@ -59,13 +59,17 @@ const Post = ({ post, setCurrentId }) => {
   return (
     <Card className={classes.card} elevation={6} >
         <CardMedia className={classes.media} image={post.selectedFile || 'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'} title={post.title} onClick={openPost}/>
-        <Grid className={classes.overlay} >  
-           <Grid container direction="row" style={{alignContent: 'center'}}>
-            {/* <Avatar className={classes.small} alt={post.name} src={post.imageUrl} onClick={gotoProfile}>{post.name.charAt(0)}</Avatar>
-            <Typography style={{marginLeft:10, cursor: 'pointer', color: 'white'}} onClick={gotoProfile}>{post.name}</Typography>  */}
-              <MoreVertIcon onClick={gotoProfile}></MoreVertIcon>
-            </Grid>
-        </Grid>
+        <div className={classes.details}>
+           <Avatar className={classes.small} alt={post.name} src={post.imageUrl} onClick={gotoProfile}>{post.name.charAt(0)}</Avatar>
+           <Typography style={{marginLeft:10, cursor: 'pointer', color: 'white'}} onClick={gotoProfile}>{post.name}</Typography> 
+           <Box fontSize={12} onClick={gotoProfile} style={{position:'absolute', cursor: 'pointer', marginLeft:'35px' , marginTop:'25px'}}>{moment(post.createdAt).fromNow()}</Box>
+        </div>
+
+
+
+
+        <MoreVertIcon onClick={gotoProfile} style={{position:'absolute', marginLeft: '90%', marginTop:'85%'}}></MoreVertIcon>
+
         <ButtonBase component="span" name="test" className={classes.cardAction} onClick={openPost}>  
         {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) && (
         <div className={classes.overlay2} name="edit">
@@ -81,19 +85,14 @@ const Post = ({ post, setCurrentId }) => {
           </Button>
         </div>
         )}
-        <div>
-        <Avatar className={classes.small} alt={post.name} src={post.imageUrl} onClick={gotoProfile}>{post.name.charAt(0)}</Avatar>
-            <Typography style={{marginLeft:10, cursor: 'pointer', color: 'white'}} onClick={gotoProfile}>{post.name}</Typography> 
-            <Box fontSize={12} onClick={gotoProfile} style={{cursor: 'pointer', marginTop: 10}}>{moment(post.createdAt).fromNow()}</Box>
-        </div>
-        <div className={classes.details}>
-          <Typography variant="body2" color="white" component="h2">{post.tags.map((tag) => `#${tag} `)}</Typography>
-        </div>
+    
         <Typography className={classes.title} gutterBottom variant="h5" component="h2">{post.title}</Typography>
-        <CardContent>
-          <Typography variant="body2" color="white" component="p">{post.message.split(' ').splice(0, 20).join(' ')}...</Typography>
-        </CardContent>
+        <Typography className={classes.tags} variant="body2" color="white" component="h2">{post.tags.map((tag) => `#${tag} `)}</Typography>
+
+        <Typography style={{position:'absolute', paddingLeft: '10px', paddingRight: '10px', marginBottom: '20px',}} variant="body2" color="white" component="p">{post.message.split(' ').splice(0, 20).join(' ')}...</Typography>
+
       </ButtonBase>
+
       <CardActions className={classes.cardActions}>
         <Button size="small" style={{color: 'white'}} disabled={!user?.result} onClick={handleLike}>
           <Likes />

@@ -21,4 +21,11 @@ export default makeStyles((theme) => ({
   image: {
     marginLeft: '15px',
   },
+  buttons: {
+    backgroundColor: 'rgba( 148, 148, 148, 0.3 )',
+    boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
+    backdropFilter: 'blur(16px) saturate(180%)',
+    WebkitBackdropFilter: ' blur(16px) saturate(180%)',
+    border: '1px solid rgba( 255, 255, 255, 0.5 )',
+  }
 }));

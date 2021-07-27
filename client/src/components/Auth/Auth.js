@@ -71,8 +71,8 @@ const SignUp = () => {
               <Input name="lastName" label="Last Name" handleChange={handleChange} half style={{color: 'white'}}/>
             </>
             )}
-            <Input name="email" label="Email Address" handleChange={handleChange} type="email" style={{color: 'white'}}/>
-            <Input name="password" style={{color: 'white'}} label="Password" handleChange={handleChange} type={showPassword ? 'text' : 'password'} handleShowPassword={handleShowPassword} />
+            <Input name="email" label="Email Address" handleChange={handleChange} type="email"/>
+            <Input name="password" label="Password" handleChange={handleChange} type={showPassword ? 'text' : 'password'} handleShowPassword={handleShowPassword} />
             { isSignup && <Input style={{color: 'white'}} name="confirmPassword" label="Repeat Password" handleChange={handleChange} type="password" /> }
           </Grid>
           <Button type="submit" fullWidth variant="contained" className={classes.submit}>
