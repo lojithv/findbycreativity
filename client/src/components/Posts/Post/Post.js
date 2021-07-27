@@ -65,9 +65,6 @@ const Post = ({ post, setCurrentId }) => {
            <Box fontSize={12} onClick={gotoProfile} style={{position:'absolute', cursor: 'pointer', marginLeft:'35px' , marginTop:'25px'}}>{moment(post.createdAt).fromNow()}</Box>
         </div>
 
-
-
-
         <MoreVertIcon onClick={gotoProfile} style={{position:'absolute', marginLeft: '90%', marginTop:'85%'}}></MoreVertIcon>
 
         <ButtonBase component="span" name="test" className={classes.cardAction} onClick={openPost}>  
@@ -85,13 +82,13 @@ const Post = ({ post, setCurrentId }) => {
           </Button>
         </div>
         )}
-    
-        <Typography className={classes.title} gutterBottom variant="h5" component="h2">{post.title}</Typography>
-        <Typography className={classes.tags} variant="body2" color="white" component="h2">{post.tags.map((tag) => `#${tag} `)}</Typography>
+    <div>
+    <Typography className={classes.title.split(' ').splice(0, 2).join(' ')} >{post.title}</Typography>
+        {/* <Typography className={classes.tags} variant="body2" color="white" component="h2">{post.tags.map((tag) => `#${tag} `)}</Typography> */}
+        <Typography className={classes.description} color="white">{post.message.split(' ').splice(0, 10).join(' ')}...</Typography>
+    </div>
 
-        <Typography style={{position:'absolute', paddingLeft: '10px', paddingRight: '10px', marginBottom: '20px',}} variant="body2" color="white" component="p">{post.message.split(' ').splice(0, 20).join(' ')}...</Typography>
-
-      </ButtonBase>
+     </ButtonBase>
 
       <CardActions className={classes.cardActions}>
         <Button size="small" style={{color: 'white'}} disabled={!user?.result} onClick={handleLike}>

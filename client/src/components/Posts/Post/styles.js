@@ -7,6 +7,7 @@ export default makeStyles((theme)=>({
     paddingTop: '80%',
     backgroundColor: 'rgba(0, 0, 0, 0.1)',
     backgroundBlendMode: 'darken',
+    cursor: 'pointer',
   },
   border: {
     border: 'solid',
@@ -19,7 +20,7 @@ export default makeStyles((theme)=>({
     height: theme.spacing(3),
     fontSize: 12,
     cursor: 'pointer',
-    // marginright : 50,
+    marginTop: '5px'
   },
   card: {
     display: 'flex',
@@ -51,6 +52,13 @@ export default makeStyles((theme)=>({
     marginTop: '85%',
     color: 'white'
   },
+  description: {
+    position:'fixed', 
+    width:'250px',
+    marginTop: '80px',
+    marginLeft:'15px',
+    fontSize:'15px'
+  },
   date: {
     align: 'right',
   },
@@ -59,14 +67,20 @@ export default makeStyles((theme)=>({
     marginLeft:'5px',
     marginTop:'10%',
    justifyContent:'center',
-   alignItems:'center'
+   alignItems:'center',
+   width: '250px'
   },
   title: {
-    position: 'absolute',
-    marginLeft:'5%',
-    marginTop:'1%'
+    position: 'fixed',
+    fontWeight: 'semi-bold',
+    fontSize: '20px',
+    margin: '20px',
+    width:'250px',
   },
   cardActions: {
+    position: 'fixed',
+    marginTop: '460px',
+    marginLeft: '10px',
     display: 'flex',
     justifyContent: 'space-between',
     color: 'white'
