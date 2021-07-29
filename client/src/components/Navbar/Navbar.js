@@ -12,6 +12,7 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import CloseIcon from '@material-ui/icons/Close';
+import MenuRoundedIcon from '@material-ui/icons/MenuRounded';
 
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -29,6 +30,8 @@ import * as actionType from '../../constants/actionTypes';
 import useStyles from './styles';
 import SearchPopup from './PopupSeacrh';
 import DropDownMenu from './DropDownMenu';
+import MainDropDown from './mainDropDown';
+
 
 const Navbar = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
@@ -90,18 +93,16 @@ const Navbar = () => {
 
   return (
     <AppBar className={classes.appBar} position="sticky">
-      {/* <Link to="/" className={classes.brandContainer}> */}
-      <Typography component={Link} to="/" style={{color:"#e6e6e6",textDecoration: 'none',fontWeight: 'bold', fontSize: 25}} >FreelanCircle</Typography>
-        {/* <img component={Link} to="/" src={memoriesText} alt="icon" height="45px" /> */}
-        {/* <img className={classes.image} src={memoriesLogo} alt="icon" height="40px" /> */}
-      {/* </Link> */}
+      <MainDropDown/>
+      {/* <MenuRoundedIcon fontSize="large" ></MenuRoundedIcon> */}
+      <Typography component={Link} to="/" style={{color:"white",textDecoration: 'none',fontWeight: 'bold', fontSize: 25, marginLeft: '50px', position: 'absolute'}} >FreelanCircle</Typography>
       <Switch>
         <Route path="/users">
       <div className={classes.iconbutton}>
            <div>
             <Button
               // variant="contained"
-              style={{  backgroundColor:'#525252', color:'#ffffff', maxWidth: '100px', maxHeight: '90px', minWidth: '30px', minHeight: '30px', paddingLeft:"50px", paddingRight:"50px"}}
+              style={{ color:'#ffffff', maxWidth: '100px', maxHeight: '90px', minWidth: '30px', minHeight: '30px'}}
               size="medium"
               className={classes.button}
               startIcon={<SearchIcon />}
@@ -116,8 +117,8 @@ const Navbar = () => {
         style: {
           background: 'rgba( 255, 255, 255, 0.20 )',
           boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
-          backdropFilter: 'blur( 1.5px )',
-          WebkitBackdropFilter: ' blur( 1.5px )',
+          backdropFilter: 'blur(16px) saturate(180%)',
+          WebkitBackdropFilter: ' blur(16px) saturate(180%)',
           borderRadius:'10px',
           border: '1px solid rgba( 255, 255, 255, 0.18 )'
         } }}>

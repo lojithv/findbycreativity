@@ -18,7 +18,7 @@ export default makeStyles((theme) => ({
     // backdropFilter: 'blur( 1.5px ) saturate(180%)',
     // WebkitBackdropFilter: ' blur( 1.5px ) saturate(180%)',
     // border: '1px solid rgba(255, 255, 255, 0.125)',
-    backgroundColor: 'rgba( 148, 148, 148, 0.6 )',
+    backgroundColor: 'rgba( 148, 148, 148, 0.8 )',
     boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
     backdropFilter: 'blur(16px) saturate(180%)',
     WebkitBackdropFilter: ' blur(16px) saturate(180%)',
@@ -83,9 +83,19 @@ export default makeStyles((theme) => ({
     backgroundColor: deepPurple[500],
   },
   dropDownMenu: {
-    backgroundColor: 'rgba(18, 18, 18, 0.8)',
+    backgroundColor: 'rgba( 148, 148, 148, 0.8 )',
+    boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
+    backdropFilter: 'blur(16px) saturate(180%)',
+    WebkitBackdropFilter: ' blur(16px) saturate(180%)',
+    border: '1px solid rgba( 255, 255, 255, 0.5 )',
     color: 'white'
   },
+
+  button: {
+    marginLeft: '200px',
+    marginTop: '10px'
+  },
+
   // searchPop: {
   //  paper: {
   //    backgroundColor:'rgba(18, 18, 18, 0.8)'

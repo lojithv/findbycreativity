@@ -1,12 +1,32 @@
 
 body {
-    background-color: #263448;
+    background-color: #020a38;
 }
 
 html, body {
    /* display: none; */
    margin: 0;
    padding:0;
+  }
+
+  .MuiTypography-root {
+      color: rgb(255, 255, 255);
+  }
+
+  .MuiCircularProgress-root{
+    color: white;
+  }
+
+  .MuiPaper-root{
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 12px;
+    border: 1px solid rgba(209, 213, 219, 0.3);
+  }
+
+  .MuiMenuItem-root{
+    border-radius: 12px;
   }
 
 * {

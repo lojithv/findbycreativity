@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { AppBar, Typography, Toolbar, Avatar, Button } from '@material-ui/core';
+import { AppBar, Typography, Toolbar, Avatar, Button, Card } from '@material-ui/core';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import decode from 'jwt-decode';
@@ -14,8 +14,10 @@ import { useTheme } from '@material-ui/core/styles';
 import * as actionType from '../../constants/actionTypes';
 import useStyles from './styles';
 import SearchPopup from './PopupSeacrh';
+import MenuRoundedIcon from '@material-ui/icons/MenuRounded';
+import CustomMenuItemContent from './MenuItem';
 
-const DropDownMenu = () => {
+const MainDropDown = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
   const dispatch = useDispatch();
   const location = useLocation();
@@ -89,20 +91,19 @@ const DropDownMenu = () => {
             open={Boolean(anchorEl)}
             onClose={handleClose}
           >
-            <MenuItem onClick={handleClose}>
-            <Typography className={classes.userName} variant="h6">{user?.result.name}</Typography>
-            </MenuItem>
-            {/* <MenuItem onClick={handleClose}>Profile</MenuItem> */}
-            <MenuItem onClick={handleClose} component={Link} to={`/users/creators/${user?.result.name}`}>Profile</MenuItem>
-            <MenuItem onClick={handleClose} component={Link} to="/settings">Settings</MenuItem>
-            <MenuItem onClick={logout2}>Logout</MenuItem>
+            <MenuItem onClick={handleClose} component={Link} to="/">Home</MenuItem>
+            <MenuItem onClick={handleClose} component={Link} to="/users/posts">Services</MenuItem>
+            <MenuItem onClick={handleClose} component={Link} to="/users/posts">creativeMart</MenuItem>
+            <MenuItem onClick={handleClose} component={Link} to="/aboutus">About us</MenuItem>
+            <MenuItem onClick={handleClose} component={Link} to="/helpandsupport">Help & Support</MenuItem>
           </Menu>
+
             <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-            <Avatar className={classes.purple} alt={user?.result.name} src={user?.result.imageUrl}>{user?.result.name.charAt(0)}</Avatar>
+              <MenuRoundedIcon fontSize="large" style={{paddingRight:'35px', marginLeft: '-10px', color: 'white'}} ></MenuRoundedIcon>
             </Button>
 
             </div>
   );
 };
 
-export default DropDownMenu;
+export default MainDropDown;

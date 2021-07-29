@@ -62,7 +62,7 @@ const SignUp = () => {
         {/* <Avatar className={classes.avatar}> */}
           {/* <LockOutlinedIcon /> */}
         {/* </Avatar> */}
-        <Typography component="h1" variant="h5" style={{color: 'white'}}>{ isSignup ? 'Sign up' : 'Sign in' }</Typography>
+        <Typography component="h1" variant="h5" style={{color: 'black'}}>{ isSignup ? 'Sign up' : 'Sign in' }</Typography>
         <form className={classes.form} onSubmit={handleSubmit}>
           <Grid container spacing={2}>
             { isSignup && (
@@ -91,7 +91,7 @@ const SignUp = () => {
           />
           <Grid container justify="flex-end">
             <Grid item>
-              <Button onClick={switchMode} style={{color: 'white'}}>
+              <Button onClick={switchMode} style={{color: '#424242'}}>
                 { isSignup ? 'Already have an account? Sign in' : "Don't have an account? Sign Up" }
               </Button>
             </Grid>

@@ -16,6 +16,13 @@ import * as actionType from '../../constants/actionTypes';
 import useStyles from './styles';
 import SearchPopup from '../Navbar/PopupSeacrh';
 
+import { useParams } from 'react-router-dom';
+import {  CircularProgress, Grid, Divider } from '@material-ui/core';
+import {  useSelector } from 'react-redux';
+
+import Post from '../Posts/Post/Post';
+import { getPostsByCreator, getPostsBySearch } from '../../actions/posts';
+
 const Profile = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
   const dispatch = useDispatch();
@@ -43,9 +50,27 @@ const Profile = () => {
     setUser(JSON.parse(localStorage.getItem('profile')));
   }, [location]);
 
+  const CreatorOrTag = () => {
+    const { name } = useParams();
+    const dispatch = useDispatch();
+    const { posts, isLoading } = useSelector((state) => state.posts);
+  
+    const location = useLocation();
+  
+    useEffect(() => {
+      if (location.pathname.startsWith('/tags')) {
+        dispatch(getPostsBySearch({ tags: name }));
+      } else {
+        dispatch(getPostsByCreator(name));
+      }
+    }, []);
+  
+    if (!posts.length && !isLoading) return 'No posts';
+
 
 
   return (
+    <div>
     <div className={classes.appBar} position="sticky" color="inherit">
       
       <Toolbar className={classes.toolbar}> 
@@ -59,7 +84,22 @@ const Profile = () => {
         )}
       </Toolbar>
     </div>
+        <div>
+        <Typography variant="h2" style={{color:'White'}} fontWeight="fontWeightBold">{name}</Typography>
+        <Divider style={{ margin: '20px 0 50px 0' }} />
+        {isLoading ? <CircularProgress /> : (
+          <Grid container alignItems="stretch" spacing={3}>
+            {posts?.map((post) => (
+              <Grid key={post._id} item xs={12} sm={12} md={6} lg={3}>
+                <Post post={post} />
+              </Grid>
+            ))}
+          </Grid>
+        )}
+      </div>
+      </div>
   );
 };
-
+}
+ 
 export default Profile;

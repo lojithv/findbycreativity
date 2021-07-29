@@ -8,7 +8,7 @@ export default makeStyles((theme) => ({
     alignItems: 'center',
     padding: theme.spacing(2),
     
-    backgroundColor: 'rgba( 255, 255, 255, 0.7 )',
+    backgroundColor: 'rgba( 255, 255, 255, 0.8 )',
     boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
     backdropFilter: 'blur(16px) saturate(180%)',
     WebkitBackdropFilter: ' blur(16px) saturate(180%)',
