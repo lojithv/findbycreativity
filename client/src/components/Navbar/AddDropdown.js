@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { AppBar, Typography, Toolbar, Avatar, Button, Card } from '@material-ui/core';
+import { AppBar, Typography, Toolbar, Avatar, Button } from '@material-ui/core';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import decode from 'jwt-decode';
@@ -14,11 +14,9 @@ import { useTheme } from '@material-ui/core/styles';
 import * as actionType from '../../constants/actionTypes';
 import useStyles from './styles';
 import SearchPopup from './PopupSeacrh';
-import MenuRoundedIcon from '@material-ui/icons/MenuRounded';
-import CustomMenuItemContent from './MenuItem';
 import AddBoxIcon from '@material-ui/icons/AddBox';
 
-const MainDropDown = () => {
+const AddDropDown = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
   const dispatch = useDispatch();
   const location = useLocation();
@@ -92,19 +90,18 @@ const MainDropDown = () => {
             open={Boolean(anchorEl)}
             onClose={handleClose}
           >
-            <MenuItem onClick={handleClose} component={Link} to="/">Home</MenuItem>
-            <MenuItem onClick={handleClose} component={Link} to="/users/services">Services</MenuItem>
-            <MenuItem onClick={handleClose} component={Link} to="/users/items">creativeMart</MenuItem>
-            <MenuItem onClick={handleClose} component={Link} to="/aboutus">About us</MenuItem>
-            <MenuItem onClick={handleClose} component={Link} to="/helpandsupport">Help & Support</MenuItem>
+    
+            {/* <MenuItem onClick={handleClose}>Profile</MenuItem> */}
+            <MenuItem onClick={handleClose} component={Link} to={`/users/uploadservice`}>Add Service</MenuItem>
+            <MenuItem onClick={handleClose} component={Link} to="/users/uploadpost">Add Post</MenuItem>
+            <MenuItem onClick={handleClose} component={Link} to="/users/uploaditem">Add Item</MenuItem>
           </Menu>
-
             <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-              <MenuRoundedIcon fontSize="large" style={{paddingRight:'35px', marginLeft: '-10px', color: 'white'}} ></MenuRoundedIcon>
+            <Button variant="contained"  style={{width: '100px'}} color="#000000" startIcon={<AddBoxIcon />}>ADD</Button>
             </Button>
 
             </div>
   );
 };
 
-export default MainDropDown;
+export default AddDropDown;

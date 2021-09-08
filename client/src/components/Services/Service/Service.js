@@ -10,26 +10,26 @@ import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
-import { likePost, deletePost } from '../../../actions/posts';
+import { likeService, deleteService } from '../../../actions/services';
 import useStyles from './styles';
 
-const Post = ({ post, setCurrentId }) => {
+const Service = ({ service, setCurrentId }) => {
   const user = JSON.parse(localStorage.getItem('profile'));
-  const [likes, setLikes] = useState(post?.likes);
+  const [likes, setLikes] = useState(service?.likes);
   const dispatch = useDispatch();
   const history = useHistory();
   const classes = useStyles();
    
   const userId = user?.result.googleId || user?.result?._id;
-  const hasLikedPost = post.likes.find((like) => like === userId);
+  const hasLikedService = service.likes.find((like) => like === userId);
 
   const handleLike = async () => {
-    dispatch(likePost(post._id));
+    dispatch(likeService(service._id));
 
-    if (hasLikedPost) {
-      setLikes(post.likes.filter((id) => id !== userId));
+    if (hasLikedService) {
+      setLikes(service.likes.filter((id) => id !== userId));
     } else {
-      setLikes([...post.likes, userId]);
+      setLikes([...service.likes, userId]);
     }
   };
 
@@ -46,34 +46,34 @@ const Post = ({ post, setCurrentId }) => {
     return <><ThumbUpAltOutlined fontSize="small" />&nbsp;Like</>;
   };
 
-  const openPost = (e) => {
+  const openService = (e) => {
     // dispatch(getPost(post._id, history));
 
-    history.push(`/users/posts/${post._id}`);
+    history.push(`/users/services/${service._id}`);
   };
 
   const gotoProfile = (e) => {
-    history.push(`/users/creators/${post.name}`);
+    history.push(`/users/creators/${service.name}`);
   }
 
   return (
     <Card className={classes.card} elevation={6} >
-        <CardMedia className={classes.media} image={post.selectedFile || 'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'} title={post.title} onClick={openPost}/>
+        <CardMedia className={classes.media} image={service.selectedFile || 'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'} title={service.title} onClick={openService}/>
         <div className={classes.details}>
-           <Avatar className={classes.small} alt={post.name} src={post.imageUrl} onClick={gotoProfile}>{post.name.charAt(0)}</Avatar>
-           <Typography style={{marginLeft:10, cursor: 'pointer', color: 'white'}} onClick={gotoProfile}>{post.name}</Typography> 
-           <Box fontSize={12} onClick={gotoProfile} style={{position:'absolute', cursor: 'pointer', marginLeft:'35px' , marginTop:'25px'}}>{moment(post.createdAt).fromNow()}</Box>
+           <Avatar className={classes.small} alt={service.name} src={service.imageUrl} onClick={gotoProfile}>{service.name.charAt(0)}</Avatar>
+           <Typography style={{marginLeft:10, cursor: 'pointer', color: 'white'}} onClick={gotoProfile}>{service.name}</Typography> 
+           <Box fontSize={12} onClick={gotoProfile} style={{position:'absolute', cursor: 'pointer', marginLeft:'35px' , marginTop:'25px'}}>{moment(service.createdAt).fromNow()}</Box>
         </div>
 
         <MoreVertIcon onClick={gotoProfile} style={{position:'absolute', marginLeft: '90%', marginTop:'85%'}}></MoreVertIcon>
 
-        <ButtonBase component="span" name="test" className={classes.cardAction} onClick={openPost}>  
-        {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) && (
+        <ButtonBase component="span" name="test" className={classes.cardAction} onClick={openService}>  
+        {(user?.result?.googleId === service?.creator || user?.result?._id === service?.creator) && (
         <div className={classes.overlay2} name="edit">
           <Button
             onClick={(e) => {
               e.stopPropagation();
-              setCurrentId(post._id);
+              setCurrentId(service._id);
             }}
             style={{ color: 'white' }}
             size="small"
@@ -82,9 +82,9 @@ const Post = ({ post, setCurrentId }) => {
         </div>
         )}
     <div>
-    <Typography className={classes.title.split(' ').splice(0, 2).join(' ')} >{post.title}</Typography>
+    <Typography className={classes.title.split(' ').splice(0, 2).join(' ')} >{service.title}</Typography>
         {/* <Typography className={classes.tags} variant="body2" color="white" component="h2">{post.tags.map((tag) => `#${tag} `)}</Typography> */}
-        <Typography className={classes.description} color="white">{post.message.split(' ').splice(0, 10).join(' ')}...</Typography>
+        <Typography className={classes.description} color="white">{service.message.split(' ').splice(0, 10).join(' ')}...</Typography>
     </div>
 
      </ButtonBase>
@@ -93,8 +93,8 @@ const Post = ({ post, setCurrentId }) => {
         <Button size="small" style={{color: 'white'}} disabled={!user?.result} onClick={handleLike}>
           <Likes />
         </Button>
-        {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) && (
-          <Button size="small" style={{color: 'white'}} onClick={() => dispatch(deletePost(post._id))}>
+        {(user?.result?.googleId === service?.creator || user?.result?._id === service?.creator) && (
+          <Button size="small" style={{color: 'white'}} onClick={() => dispatch(deleteService(service._id))}>
             <DeleteIcon fontSize="small" style={{color: 'white'}}/> &nbsp; Delete
           </Button>
         )}
@@ -103,4 +103,4 @@ const Post = ({ post, setCurrentId }) => {
   );
 };
 
-export default Post;
+export default Service;

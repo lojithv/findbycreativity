@@ -61,12 +61,11 @@ export default makeStyles((theme) => ({
     },
   },
   buttons: {
-    marginLeft: '20px',
+    marginLeft: '30%',
+    // marginright: '30px'
   },
   iconbutton: {
     position: 'relative',
-    marginLeft: '150px',
-    alignItems: 'center',
   },
   userName: {
     display: 'flex',
@@ -88,7 +87,9 @@ export default makeStyles((theme) => ({
     backdropFilter: 'blur(16px) saturate(180%)',
     WebkitBackdropFilter: ' blur(16px) saturate(180%)',
     border: '1px solid rgba( 255, 255, 255, 0.5 )',
-    color: 'white'
+    color: 'white', 
+    width: '180px',
+    alignItems: 'center',
   },
 
   button: {

@@ -21,6 +21,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
+import AddBoxIcon from '@material-ui/icons/AddBox';
 
 import Box from '@material-ui/core/Box';
 import Popover from '@material-ui/core/Popover';
@@ -31,6 +32,7 @@ import useStyles from './styles';
 import SearchPopup from './PopupSeacrh';
 import DropDownMenu from './DropDownMenu';
 import MainDropDown from './mainDropDown';
+import AddDropDown from './AddDropdown';
 
 
 const Navbar = () => {
@@ -93,9 +95,9 @@ const Navbar = () => {
 
   return (
     <AppBar className={classes.appBar} position="sticky">
-      <MainDropDown/>
+      <MainDropDown />
       {/* <MenuRoundedIcon fontSize="large" ></MenuRoundedIcon> */}
-      <Typography component={Link} to="/" style={{color:"white",textDecoration: 'none',fontWeight: 'bold', fontSize: 25, marginLeft: '50px', position: 'absolute'}} >FreelanCircle</Typography>
+      <Typography component={Link} to="/" style={{color:"white",textDecoration: 'none',fontWeight: 'bold', fontSize: 25, marginLeft: '20px'}} >FreelanCircle</Typography>
       <Switch>
         <Route path="/users">
       <div className={classes.iconbutton}>
@@ -111,7 +113,7 @@ const Navbar = () => {
               Search
           </Button>  
 
-      <Dialog className={classes.searchPop} open={open} onClose={handleCloseSearch} aria-labelledby="form-dialog-title" 
+      <Dialog className={classes.searchPop} style={{position:'absolute'}} open={open} onClose={handleCloseSearch} aria-labelledby="form-dialog-title" 
       overlayStyle="transparent"
       PaperProps={{
         style: {
@@ -147,13 +149,13 @@ const Navbar = () => {
         {user?.result ? (
           <div className={classes.profile}>
             
-            <Button variant="contained" className={classes.buttons} color="#000000" onClick={uploadpost} startIcon={<CloudUploadIcon />}>Upload</Button>
-           
+            {/* <Button variant="contained" className={classes.buttons} color="#000000" onClick={uploadpost} startIcon={<AddBoxIcon />}>ADD</Button> */}
+           <AddDropDown/>
            <DropDownMenu/>
           </div>
         ) : (
           <>
-            <Button variant="contained" className={classes.buttons} color="#000000" onClick={uploadpost} startIcon={<CloudUploadIcon />}>Upload</Button>
+            <Button variant="contained" className={classes.buttons} color="#000000" onClick={uploadpost} startIcon={<AddBoxIcon />}>ADD</Button>
           <Button component={Link} to="/auth" className={classes.buttons} variant="contained" color="#000000" >Sign In</Button>
           </>
         )}

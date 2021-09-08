@@ -3,13 +3,13 @@ import { Container, Grow, Grid, AppBar, TextField, Button, Paper } from '@materi
 
 import { useLocation } from 'react-router-dom';
 
-import Form from '../Form/Form';
+import Form from './Form';
 import useStyles from './styles';
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
-const UploadPost = () => {
+const UploadItem = () => {
   const classes = useStyles();
   const query = useQuery();
 
@@ -31,4 +31,4 @@ const UploadPost = () => {
   );
 };
 
-export default UploadPost;
+export default UploadItem;

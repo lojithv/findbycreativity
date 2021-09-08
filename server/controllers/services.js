@@ -62,7 +62,7 @@ export const getService = async (req, res) => {
 export const createService = async (req, res) => {
     const service = req.body;
 
-    const newService = new PostMessage({ ...service, creator: req.userId, createdAt: new Date().toISOString() })
+    const newService = new Service({ ...service, creator: req.userId, createdAt: new Date().toISOString() })
 
     try {
         await newService.save();

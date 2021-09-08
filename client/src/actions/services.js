@@ -1,106 +1,106 @@
-import { START_LOADING, END_LOADING, FETCH_ALL, FETCH_POST, FETCH_BY_SEARCH, CREATE, UPDATE, DELETE, LIKE, COMMENT, FETCH_BY_CREATOR, FETCH_BY_USERNAME } from '../constants/actionTypes';
+import { START_LOADING_SERVICE, END_LOADING_SERVICE, FETCH_ALL_SERVICE, FETCH_SERVICE, FETCH_BY_SEARCH_SERVICE, CREATE_SERVICE, UPDATE_SERVICE, DELETE_SERVICE, LIKE_SERVICE, COMMENT_SERVICE, FETCH_BY_CREATOR_SERVICE, FETCH_BY_USERNAME_SERVICE } from '../constants/actionTypes';
 import * as api from '../api/index.js';
 
-export const getPost = (id) => async (dispatch) => {
+export const getService = (id) => async (dispatch) => {
   try {
-    dispatch({ type: START_LOADING });
+    dispatch({ type: START_LOADING_SERVICE });
 
-    const { data } = await api.fetchPost(id);
+    const { data } = await api.fetchService(id);
 
-    dispatch({ type: FETCH_POST, payload: { post: data } });
+    dispatch({ type: FETCH_SERVICE, payload: { service: data } });
   } catch (error) {
     console.log(error);
   }
 };
 
-export const getPosts = (page) => async (dispatch) => {
+export const getServices = (page) => async (dispatch) => {
   try {
-    dispatch({ type: START_LOADING });
-    const { data: { data, currentPage, numberOfPages } } = await api.fetchPosts(page);
+    dispatch({ type: START_LOADING_SERVICE });
+    const { data: { data, currentPage, numberOfPages } } = await api.fetchService(page);
 
-    dispatch({ type: FETCH_ALL, payload: { data, currentPage, numberOfPages } });
-    dispatch({ type: END_LOADING });
+    dispatch({ type: FETCH_ALL_SERVICE, payload: { data, currentPage, numberOfPages } });
+    dispatch({ type: END_LOADING_SERVICE });
   } catch (error) {
     console.log(error);
   }
 };
 
-export const getPostsByCreator = (name) => async (dispatch) => {
+export const getServicesByCreator = (name) => async (dispatch) => {
   try {
-    dispatch({ type: START_LOADING });
-    const { data: { data } } = await api.fetchPostsByCreator(name);
+    dispatch({ type: START_LOADING_SERVICE });
+    const { data: { data } } = await api.fetchServicesByCreator(name);
 
-    dispatch({ type: FETCH_BY_CREATOR, payload: { data } });
-    dispatch({ type: END_LOADING });
+    dispatch({ type: FETCH_BY_CREATOR_SERVICE, payload: { data } });
+    dispatch({ type: END_LOADING_SERVICE });
   } catch (error) {
     console.log(error);
   }
 };
 
-export const getPostsByUsername = (username) => async (dispatch) => { return
+export const getServicesByUsername = (username) => async (dispatch) => { return
   try {
-    dispatch({ type: START_LOADING });
-    const { data: { data } } = await api.fetchPostsByCreator(username);
+    dispatch({ type: START_LOADING_SERVICE });
+    const { data: { data } } = await api.fetchServicesByCreator(username);
 
-    dispatch({ type: FETCH_BY_USERNAME, payload: { data } });
-    dispatch({ type: END_LOADING });
+    dispatch({ type: FETCH_BY_USERNAME_SERVICE, payload: { data } });
+    dispatch({ type: END_LOADING_SERVICE });
   } catch (error) {
     console.log(error);
   }
 };
 
-export const getPostsBySearch = (searchQuery) => async (dispatch) => {
+export const getServicesBySearch = (searchQuery) => async (dispatch) => {
   try {
-    dispatch({ type: START_LOADING });
-    const { data: { data } } = await api.fetchPostsBySearch(searchQuery);
+    dispatch({ type: START_LOADING_SERVICE });
+    const { data: { data } } = await api.fetchServicesBySearch(searchQuery);
 
-    dispatch({ type: FETCH_BY_SEARCH, payload: { data } });
-    dispatch({ type: END_LOADING });
+    dispatch({ type: FETCH_BY_SEARCH_SERVICE, payload: { data } });
+    dispatch({ type: END_LOADING_SERVICE });
   } catch (error) {
     console.log(error);
   }
 };
 
-export const createPost = (post, history) => async (dispatch) => {
+export const createService = (service, history) => async (dispatch) => {
   try {
-    dispatch({ type: START_LOADING });
-    const { data } = await api.createPost(post);
+    dispatch({ type: START_LOADING_SERVICE });
+    const { data } = await api.createService(service);
 
-    dispatch({ type: CREATE, payload: data });
+    dispatch({ type: CREATE_SERVICE, payload: data });
 
-    history.push(`/posts/${data._id}`);
+    history.push(`/users/services/${data._id}`);
   } catch (error) {
     console.log(error);
   }
 };
 
-export const updatePost = (id, post) => async (dispatch) => {
+export const updateService = (id, service) => async (dispatch) => {
   try {
-    const { data } = await api.updatePost(id, post);
+    const { data } = await api.updateService(id, service);
 
-    dispatch({ type: UPDATE, payload: data });
+    dispatch({ type: UPDATE_SERVICE, payload: data });
   } catch (error) {
     console.log(error);
   }
 };
 
-export const likePost = (id) => async (dispatch) => {
+export const likeService = (id) => async (dispatch) => {
   const user = JSON.parse(localStorage.getItem('profile'));
 
   try {
-    const { data } = await api.likePost(id, user?.token);
+    const { data } = await api.likeService(id, user?.token);
 
-    dispatch({ type: LIKE, payload: data });
+    dispatch({ type: LIKE_SERVICE, payload: data });
   } catch (error) {
     console.log(error);
   }
 };
 
-export const commentPost = (value, id) => async (dispatch) => {
+export const commentService = (value, id) => async (dispatch) => {
   try {
-    const { data } = await api.commentPost(value, id);
+    const { data } = await api.commentService(value, id);
 
-    dispatch({ type: COMMENT, payload: data });
+    dispatch({ type: COMMENT_SERVICE, payload: data });
 
     return data.comments;
   } catch (error) {
@@ -108,11 +108,11 @@ export const commentPost = (value, id) => async (dispatch) => {
   }
 };
 
-export const deletePost = (id) => async (dispatch) => {
+export const deleteService = (id) => async (dispatch) => {
   try {
-    await await api.deletePost(id);
+    await await api.deleteService(id);
 
-    dispatch({ type: DELETE, payload: id });
+    dispatch({ type: DELETE_SERVICE, payload: id });
   } catch (error) {
     console.log(error);
   }

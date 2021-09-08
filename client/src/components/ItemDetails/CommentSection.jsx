@@ -2,19 +2,19 @@ import React, { useState, useRef } from 'react';
 import { Typography, TextField, Button } from '@material-ui/core/';
 import { useDispatch } from 'react-redux';
 
-import { commentPost } from '../../actions/posts';
+import { commentItem } from '../../actions/items';
 import useStyles from './styles';
 
-const CommentSection = ({ post }) => {
+const CommentSection = ({ item }) => {
   const user = JSON.parse(localStorage.getItem('profile'));
   const [comment, setComment] = useState('');
   const dispatch = useDispatch();
-  const [comments, setComments] = useState(post?.comments);
+  const [comments, setComments] = useState(item?.comments);
   const classes = useStyles();
   const commentsRef = useRef();
 
   const handleComment = async () => {
-    const newComments = await dispatch(commentPost(`${user?.result?.name}: ${comment}`, post._id));
+    const newComments = await dispatch(commentItem(`${user?.result?.name}: ${comment}`, item._id));
 
     setComment('');
     setComments(newComments);

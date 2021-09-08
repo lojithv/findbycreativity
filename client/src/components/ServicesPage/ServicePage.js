@@ -4,8 +4,8 @@ import { useDispatch } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 import ChipInput from 'material-ui-chip-input';
 
-import { getPostsBySearch } from '../../actions/posts';
-import Posts from '../Posts/Posts';
+import { getServicesBySearch } from '../../actions/services';
+import Services from '../Services/Services';
 import Form from '../Form/Form';
 import Pagination from '../Pagination';
 import useStyles from './styles';
@@ -15,7 +15,7 @@ function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
 
-const Home = () => {
+const ServicePage = () => {
   const classes = useStyles();
   const query = useQuery();
   const page = query.get('page') || 1;
@@ -28,10 +28,10 @@ const Home = () => {
   const [tags, setTags] = useState([]);
   const history = useHistory();
 
-  const searchPost = () => {
+  const searchService = () => {
     if (search.trim() || tags) {
-      dispatch(getPostsBySearch({ search, tags: tags.join(',') }));
-      history.push(`/posts/search?searchQuery=${search || 'none'}&tags=${tags.join(',')}`);
+      dispatch(getServicesBySearch({ search, tags: tags.join(',') }));
+      history.push(`/services/search?searchQuery=${search || 'none'}&tags=${tags.join(',')}`);
     } else {
       history.push('/');
     }
@@ -39,7 +39,7 @@ const Home = () => {
 
   const handleKeyPress = (e) => {
     if (e.keyCode === 13) {
-      searchPost();
+      searchService();
     }
   };
 
@@ -53,7 +53,7 @@ const Home = () => {
       <Container maxWidth="xl">
         <Grid container justify="space-between" alignItems="stretch" spacing={3} className={classes.gridContainer}>
           <Grid item xs={12} sm={12} md={12}>
-            <Posts setCurrentId={setCurrentId} />
+            <Services setCurrentId={setCurrentId} />
             {(!searchQuery && !tags.length) && (
               <Paper className={classes.pagination} elevation={6}>
                 <Pagination page={page} />
@@ -67,4 +67,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default ServicePage;

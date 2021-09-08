@@ -10,7 +10,7 @@ import useStyles from './styles';
 
 const Form = ({ currentId, setCurrentId }) => {
   const [postData, setPostData] = useState({ title: '', message: '', tags: [], selectedFile: '' });
-  const post = useSelector((state) => (currentId ? state.posts.posts.find((message) => message._id === currentId) : null));
+  const post = useSelector((state) => (currentId ? state.posts.find((message) => message._id === currentId) : null));
   const dispatch = useDispatch();
   const classes = useStyles();
   const user = JSON.parse(localStorage.getItem('profile'));
@@ -42,7 +42,7 @@ const Form = ({ currentId, setCurrentId }) => {
     return (
       <Paper className={classes.paper} elevation={6}>
         <Typography variant="h6" align="center" style={{color: 'black'}}>
-          Please Sign In to create your own post.
+          Please Sign In to add Posts.
         </Typography>
       </Paper>
     );

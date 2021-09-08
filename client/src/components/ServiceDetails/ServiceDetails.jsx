@@ -5,30 +5,30 @@ import moment from 'moment';
 import { useParams, useHistory, Link } from 'react-router-dom';
 import CloseIcon from '@material-ui/icons/Close';
 
-import { getPost, getPostsBySearch } from '../../actions/posts';
+import { getService, getServicesBySearch } from '../../actions/services';
 import CommentSection from './CommentSection';
 import useStyles from './styles';
 
-const Post = () => {
-  const { post, posts, isLoading } = useSelector((state) => state.posts);
+const Service = () => {
+  const { service, services, isLoading } = useSelector((state) => state.services);
   const dispatch = useDispatch();
   const history = useHistory();
   const classes = useStyles();
   const { id } = useParams();
 
   useEffect(() => {
-    dispatch(getPost(id));
+    dispatch(getService(id));
   }, [id]);
 
   useEffect(() => {
-    if (post) {
-      dispatch(getPostsBySearch({ search: 'none', tags: post?.tags.join(',') }));
+    if (service) {
+      dispatch(getServicesBySearch({ search: 'none', tags: service?.tags.join(',') }));
     }
-  }, [post]);
+  }, [service]);
 
-  if (!post) return null;
+  if (!service) return null;
 
-  const openPost = (_id) => history.push(`/users/posts/${_id}`);
+  const openService = (_id) => history.push(`/users/services/${_id}`);
 
   if (isLoading) {
     return (
@@ -38,7 +38,7 @@ const Post = () => {
     );
   }
 
-  const recommendedPosts = posts.filter(({ _id }) => _id !== post._id);
+  const recommendedServices = services.filter(({ _id }) => _id !== service._id);
 
   return (
     <Paper className={classes.Mainpaper} elevation={6} className={classes.backDrop}
@@ -53,42 +53,42 @@ const Post = () => {
     >
       <div className={classes.card}>
         <div className={classes.section}>
-          <Typography className={classes.Typography} variant="h3" component="h2">{post.title}</Typography>
-          <Typography className={classes.Typography} gutterBottom variant="h6" component="h2">{post.tags.map((tag) => (
+          <Typography className={classes.Typography} variant="h3" component="h2">{service.title}</Typography>
+          <Typography className={classes.Typography} gutterBottom variant="h6" component="h2">{service.tags.map((tag) => (
             <Link to={`/tags/${tag}`} style={{ textDecoration: 'none', color: 'white' }}>
               {` #${tag} `}
             </Link>
           ))}
           </Typography>
-          <Typography className={classes.Typography} gutterBottom variant="body1" component="p">{post.message}</Typography>
+          <Typography className={classes.Typography} gutterBottom variant="body1" component="p">{service.message}</Typography>
           <Typography className={classes.Typography} variant="h6">
             Created by:
-            <Link to={`/users/creators/${post.name}`} style={{ textDecoration: 'none', color: '#baf5ff' }}>
-              {` ${post.name}`}
+            <Link to={`/users/creators/${service.name}`} style={{ textDecoration: 'none', color: '#baf5ff' }}>
+              {` ${service.name}`}
             </Link>
           </Typography>
-          <Typography className={classes.Typography} variant="body1">{moment(post.createdAt).fromNow()}</Typography>
+          <Typography className={classes.Typography} variant="body1">{moment(service.createdAt).fromNow()}</Typography>
           <Divider className={classes.Typography} style={{ margin: '20px 0' }} />
           <Typography className={classes.Typography} variant="body1"><strong>Realtime Chat - coming soon!</strong></Typography>
           <Divider className={classes.Typography} style={{ margin: '20px 0' }} />
-          <CommentSection className={classes.Typography} post={post} />
+          <CommentSection className={classes.Typography} service={service} />
           <Divider style={{ margin: '20px 0' }} />
         </div>
 
         <div className={classes.imageSection}>
-         <Typography className={classes.Typography} component={Link} to="/users/posts" >
+         <Typography className={classes.Typography} component={Link} to="/users/services" >
               <CloseIcon style={{ color: 'white', fontSize: 30, marginLeft:'94%'}}/>
           </Typography>
-          <img className={classes.media} src={post.selectedFile || 'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'} alt={post.title} />
+          <img className={classes.media} src={service.selectedFile || 'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'} alt={service.title} />
         </div>
       </div>
-      {!!recommendedPosts.length && (
+      {!!recommendedServices.length && (
         <div className={classes.section}>
           <Typography className={classes.Typography} gutterBottom variant="h5">You might also like:</Typography>
           <Divider />
-          <div className={classes.recommendedPosts}>
-            {recommendedPosts.map(({ title, name, message, likes, selectedFile, _id }) => (
-              <div style={{ margin: '20px', cursor: 'pointer' }} onClick={() => openPost(_id)} key={_id}>
+          <div className={classes.recommendedServices}>
+            {recommendedServices.map(({ title, name, message, likes, selectedFile, _id }) => (
+              <div style={{ margin: '20px', cursor: 'pointer' }} onClick={() => openService(_id)} key={_id}>
                 <Typography className={classes.Typography} gutterBottom variant="h6">{title}</Typography>
                 <Typography className={classes.Typography} gutterBottom variant="subtitle2">{name}</Typography>
                 <Typography className={classes.Typography} gutterBottom variant="subtitle2">{message}</Typography>
@@ -103,4 +103,4 @@ const Post = () => {
   );
 };
 
-export default Post;
+export default Service;
