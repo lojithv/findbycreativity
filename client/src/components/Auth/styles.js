@@ -7,7 +7,7 @@ export default makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
     padding: theme.spacing(2),
-    
+
     backgroundColor: 'rgba( 255, 255, 255, 0.8 )',
     boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
     backdropFilter: 'blur(16px) saturate(180%)',
@@ -38,9 +38,9 @@ export default makeStyles((theme) => ({
     backgroundColor: 'rgba(18, 18, 18, 0.8)',
     color: "white",
     marginTop: "10px",
-    marginBottom:"10px",
-    '&:hover':{
-      backgroundColor:"#171717"
+    marginBottom: "10px",
+    '&:hover': {
+      backgroundColor: "#171717"
     }
   }
 }));

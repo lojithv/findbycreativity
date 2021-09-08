@@ -12,12 +12,13 @@ const Input = ({ name, handleChange, label, half, autoFocus, type, handleShowPas
       variant="outlined"
       required
       fullWidth
+      autoComplete="none"
       label={label}
       autoFocus={autoFocus}
       type={type}
       InputProps={name === 'password' ? {
         endAdornment: (
-          <InputAdornment position="end">
+          <InputAdornment autoComplete="none" position="end">
             <IconButton onClick={handleShowPassword}>
               {type === 'password' ? <Visibility /> : <VisibilityOff />}
             </IconButton>
